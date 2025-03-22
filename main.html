@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
 	<link rel="stylesheet" href="styles.css">
 </head>
 
-<body>	
+<body>
 	<script>
 		function secondHighest(arr) {
-			arr.sort();
-			if(arr[0] === arr[n-1]) return "-Infinity"; 
-			return arr[arr.length - 2];
+			if (arr.length < 2) return -Infinity; // If the array has fewer than two elements, return -Infinity.
+
+			// Sort the array numerically
+			arr.sort((a, b) => a - b);
+
+			// Check for the second-highest distinct value
+			for (let i = arr.length - 2; i >= 0; i--) {
+				if (arr[i] !== arr[arr.length - 1]) {
+					return arr[i]; // Return the second-highest value
+				}
+			}
+
+			return -Infinity; // If no second-highest distinct value, return -Infinity
 		}
 
 		function Main() {
-			var n = prompt("Enter the number of elements"); 
+			var n = parseInt(prompt("Enter the number of elements"));
 			var arr = [];
-			for (var i = 0; i < n; i++) { 
-				arr[i] = prompt("Enter element " + (i+1)); 
-			} 
+			for (var i = 0; i < n; i++) {
+				arr[i] = parseInt(prompt("Enter element " + (i + 1))); // Convert to integer
+			}
 			alert(secondHighest(arr));
 		}
+
 		Main();
 	</script>
 
-    <script type="text/javascript" src="./script.js">
-</script>
+	<script type="text/javascript" src="./script.js"></script>
 
 </body>
-
 </html>
